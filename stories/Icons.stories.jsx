@@ -29,18 +29,18 @@ storiesOf('Icons', module)
   .addDecorator(IconDecorator)
   .add('Brands', () => (
     <>
-      <Facebook />
-      <GooglePlus />
-      <Linkedin />
-      <Skype />
-      <Twitter />
-      <Instagram />
+      <Facebook size="2x" mr=".4em" />
+      <GooglePlus size="2x" mr=".4em" />
+      <Linkedin size="2x" mr=".4em" />
+      <Skype size="2x" mr=".4em" />
+      <Twitter size="2x" mr=".4em" />
+      <Instagram size="2x" mr=".4em" />
     </>
   ))
   .add('Rest', () => (
     <>
-      <Envelope />
-      <Heart />
-      <FaLink />
+      <Envelope size="3x" mr=".5em" />
+      <Heart size="3x" mr=".5em" />
+      <FaLink size="3x" mr=".5em" />
     </>
   ));

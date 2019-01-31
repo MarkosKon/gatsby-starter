@@ -1,5 +1,7 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
+import { space } from 'styled-system';
+import { FontAwesomeIcon as Base } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF,
   faGooglePlus,
@@ -10,6 +12,10 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons';
 import { faHeart, faLink } from '@fortawesome/free-solid-svg-icons';
+
+const FontAwesomeIcon = styled(Base)`
+  ${space}
+`;
 
 const Facebook = props => <FontAwesomeIcon {...props} icon={faFacebookF} />;
 const GooglePlus = props => <FontAwesomeIcon {...props} icon={faGooglePlus} />;
