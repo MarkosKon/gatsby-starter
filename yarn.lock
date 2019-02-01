@@ -11973,6 +11973,13 @@ readdirp@^2.0.0:
     micromatch "^3.1.10"
     readable-stream "^2.0.2"
 
+rebass@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/rebass/-/rebass-3.0.1.tgz#140230f4e4eceaf7adb682bcf380ceb0fff82d2f"
+  integrity sha512-IiETPunFNc3zoZoHpDsCS2Gk+OvTF6tDOSBeZzDSk9d2RMg/5DeRaXgnXnaYm+4XY1tcj7iV3psURqWpIcSdtg==
+  dependencies:
+    styled-system "^3.2.1"
+
 recast@^0.16.0:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/recast/-/recast-0.16.2.tgz#3796ebad5fe49ed85473b479cd6df554ad725dc2"
