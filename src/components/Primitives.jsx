@@ -1,20 +1,24 @@
 import styled from 'styled-components';
-import { Flex as BaseFlex, Box as BaseBox, Heading as BaseHeading } from 'rebass';
-import { height, flexBasis, minHeight } from 'styled-system';
+import {
+  Flex as BaseFlex, Box as BaseBox, Heading as BaseHeading, Text as BaseText,
+} from 'rebass';
+import {
+  height, flexBasis, minHeight, variant,
+} from 'styled-system';
 
 // Box.
-export const Box = styled(BaseBox)`
+const Box = styled(BaseBox)`
   ${height}
   ${minHeight}
   ${flexBasis}
 `;
 // Flex.
-export const Flex = styled(BaseFlex)`
+const Flex = styled(BaseFlex)`
   ${height}
   ${minHeight}
 `;
 // Centered.
-export const Centered = styled(Flex)``;
+const Centered = styled(Flex)``;
 Centered.defaultProps = {
   ...Flex.defaultProps,
   alignItems: 'center',
@@ -23,10 +27,25 @@ Centered.defaultProps = {
   height: '100%',
 };
 // Heading.
-BaseHeading.defaultProps = {
+const headingStyle = variant({
+  key: 'headings',
+});
+const Heading = styled(BaseHeading)`
+  ${headingStyle}
+`;
+Heading.defaultProps = {
   ...BaseHeading.defaultProps,
   fontSize: null,
   fontWeight: null,
 };
-export { BaseHeading as Heading };
-export { Text, Button } from 'rebass';
+// Text.
+const textStyle = variant({
+  key: 'texts',
+});
+const Text = styled(BaseText)`
+  ${textStyle}
+`;
+export {
+  Box, Flex, Centered, Heading, Text,
+};
+export { Button } from 'rebass';

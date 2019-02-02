@@ -1,17 +1,21 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { storiesOf } from '@storybook/react';
 
 import {
   Flex, Box, Centered, Heading, Text,
 } from '../src/components/Primitives';
+import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
 
 const GridDecorator = storyFn => (
-  <>
-    <GlobalStyle />
-    {storyFn()}
-  </>
+  <ThemeProvider theme={theme}>
+    <>
+      <GlobalStyle />
+      {storyFn()}
+    </>
+  </ThemeProvider>
 );
 storiesOf('Grid', module)
   .addDecorator(GridDecorator)

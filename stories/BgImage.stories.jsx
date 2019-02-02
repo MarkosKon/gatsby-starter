@@ -3,17 +3,21 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { Container, Centered } from 'already-styled-components';
+import { ThemeProvider } from 'styled-components';
 
-import BgImage from '../src/components/BgImage';
+import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
+import BgImage from '../src/components/BgImage';
+import { Heading, Centered, Box } from '../src/components/Primitives';
 import { data } from './mock-data/slider-2';
 
 const BgImageDecorator = storyFn => (
-  <Container fluid h="500px">
-    <GlobalStyle />
-    {storyFn()}
-  </Container>
+  <ThemeProvider theme={theme}>
+    <Box height="500px">
+      <GlobalStyle />
+      {storyFn()}
+    </Box>
+  </ThemeProvider>
 );
 storiesOf('BgImage', module)
   .addDecorator(withInfo)
@@ -25,8 +29,10 @@ storiesOf('BgImage', module)
       overlayColor="#04040487"
       height="500px"
     >
-      <Centered>
-        <h1 style={{ color: 'white', fontSize: '60px' }}>BACKGROUND IMAGE</h1>
+      <Centered color="white">
+        <Heading as="h1" variant="h1">
+          BACKGROUND IMAGE
+        </Heading>
       </Centered>
     </BgImage>
   ));
