@@ -1,9 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StaticQuery, graphql, Link } from 'gatsby';
-import { Container, Navbar } from 'already-styled-components';
+import { ThemeProvider } from 'styled-components';
+import { StaticQuery, graphql } from 'gatsby';
+import { Navbar } from 'already-styled-components';
 
 import GlobalStyle from './GlobalStyle';
+import theme from './theme';
+import { Box } from '../components/Primitives';
+import Link from '../components/Link';
 
 const Layout = ({ children }) => (
   <StaticQuery
@@ -17,21 +21,25 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
-        <GlobalStyle />
-        <Navbar
-          bc="rebeccapurple"
-          brand={(
-            <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
-              <h1>{data.site.siteMetadata.title}</h1>
-            </Link>
+      <ThemeProvider theme={theme}>
+        <>
+          <GlobalStyle />
+          <Navbar
+            bc="rebeccapurple"
+            brand={(
+              <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+                <h1>{data.site.siteMetadata.title}</h1>
+              </Link>
 )}
-        >
-          <Link to="/">Home</Link>
-          <Link to="/page-2">Page 2</Link>
-        </Navbar>
-        <Container>{children}</Container>
-      </>
+          >
+            <Link to="/">Home</Link>
+            <Link to="/page-2">Page 2</Link>
+          </Navbar>
+          <Box width="70%" m="auto">
+            {children}
+          </Box>
+        </>
+      </ThemeProvider>
     )}
   />
 );

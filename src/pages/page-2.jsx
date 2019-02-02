@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'gatsby';
 
+import Link from '../components/Link';
 import Layout from '../layouts/Layout';
 import SEO from '../components/SEO';
 
