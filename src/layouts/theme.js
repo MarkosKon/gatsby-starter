@@ -1,3 +1,5 @@
+import { mixed } from 'styled-system';
+
 const black = '#000';
 const almostBlack = '#181818';
 const pink = 'pink';
@@ -61,11 +63,11 @@ export default {
   },
   // Variants
   headings: {
-    h1: {
+    h1: mixed({
       lineHeight: lineHeights.wide,
-      fontSize: fontSizes[8],
+      fontSize: [6, 8],
       fontWeight: fontWeights.bold,
-    },
+    }),
     h2: {
       lineHeight: lineHeights.normal,
       fontSize: fontSizes[5],
