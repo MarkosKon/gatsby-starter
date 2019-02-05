@@ -25,6 +25,9 @@ const IndexPage = () => (
         <li>
           <Link to="/aos/">Animation on scroll example</Link>
         </li>
+        <li>
+          <Link to="/parallax/">Parallax example with react-spring</Link>
+        </li>
       </ul>
     </Box>
   </Layout>
