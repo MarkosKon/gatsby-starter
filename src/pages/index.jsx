@@ -15,10 +15,17 @@ const IndexPage = () => (
       <Text as="p" variant="wide">
         Welcome to your new Gatsby site.
       </Text>
-      <Text as="p" variant="normal">
+      <Text as="p" variant="normal" pb={3}>
         Now go build something great.
       </Text>
-      <Link to="/page-2/">Go to page 2</Link>
+      <ul>
+        <li>
+          <Link to="/page-2/">A simple slider</Link>
+        </li>
+        <li>
+          <Link to="/aos/">Animation on scroll example</Link>
+        </li>
+      </ul>
     </Box>
   </Layout>
 );
