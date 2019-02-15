@@ -1,5 +1,5 @@
 import React from 'react';
-import { Parallax, ParallaxLayer } from 'react-spring/renderprops';
+import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons';
 
 import { Box, Centered, Heading } from '../components/Primitives';
 // import Layout from '../layouts/Layout';
