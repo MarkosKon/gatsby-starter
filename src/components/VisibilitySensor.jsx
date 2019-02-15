@@ -17,10 +17,7 @@ class VisibilitySensor extends Component {
       <VSensor
         {...theRest}
         active={active}
-        onChange={isVisible => once
-          && isVisible
-          && this.setState({ active: false }, () => console.log('turned the thing off!'))
-        }
+        onChange={isVisible => once && isVisible && this.setState({ active: false })}
       >
         {({ isVisible }) => children({ isVisible })}
       </VSensor>

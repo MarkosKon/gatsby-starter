@@ -3,8 +3,8 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import { Centered } from 'already-styled-components';
 
+import { Centered } from '../src/components/Primitives';
 import {
   Facebook,
   GooglePlus,
@@ -21,7 +21,7 @@ import theme from '../src/layouts/theme';
 
 const IconDecorator = storyFn => (
   <ThemeProvider theme={theme}>
-    <Centered h="500px" bc="#3d3d3d" c="#50bd77">
+    <Centered height="500px" bg="#3d3d3d" color="#50bd77">
       <GlobalStyle />
       {storyFn()}
     </Centered>
