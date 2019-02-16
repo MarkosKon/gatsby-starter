@@ -76,7 +76,9 @@ DesktopList.propTypes = {
   brand: PropTypes.element,
   showMobile: PropTypes.func,
   isAtTop: PropTypes.bool,
-  isAtTopRef: PropTypes.node.isRequired,
+  isAtTopRef: PropTypes.shape({
+    current: PropTypes.object,
+  }).isRequired,
   mobileBreakpoint: PropTypes.number,
   c: PropTypes.string,
   bc: PropTypes.string,
