@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, useTransition, animated } from 'react-spring';
 
-import {
-  DesktopListEmpty as DesktopList,
-  MobileListEmpty as MobileList,
-  useTopEffect,
-} from './Navbar';
+import { DesktopListEmpty as DesktopList, MobileList, useTopEffect } from './Navbar';
 
 const AnimatedDesktopList = animated(DesktopList);
 const AnimatedMobileList = animated(MobileList);
@@ -44,6 +40,8 @@ const Navbar = ({
           bc={bc}
           hc={hc}
           hideMobile={() => changeMobileMenuVisibility(false)}
+          alwaysVisible
+          mobileMenuVisible={mobileMenuVisible}
         >
           {children}
         </AnimatedMobileList>

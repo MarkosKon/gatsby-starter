@@ -20,19 +20,23 @@ const CloseButton = styled(Button)`
   top: 20px;
   right: 20px;
 `;
-const MobileListEmpty = forwardRef(({
-  hideMobile, children, c, bc, hc, className,
-}, ref) => (
+const MobileListEmpty = forwardRef(
+  ({
+    hideMobile, mobileMenuVisible, alwaysVisible, children, c, bc, hc, className,
+  }, ref) => (alwaysVisible || mobileMenuVisible) && (
   <MobileListContainer c={c} bc={bc} className={className} ref={ref}>
     <CloseButton bg="transparent" onClick={hideMobile} aria-label="close mobile menu">
       <FaTimes size="2x" width="30px" c={c} hc={hc} />
     </CloseButton>
     {children}
   </MobileListContainer>
-));
+  ),
+);
 
 MobileListEmpty.propTypes = {
   hideMobile: PropTypes.func,
+  mobileMenuVisible: PropTypes.bool.isRequired,
+  alwaysVisible: PropTypes.bool,
   children: PropTypes.node,
   c: PropTypes.string,
   bc: PropTypes.string,
@@ -41,6 +45,7 @@ MobileListEmpty.propTypes = {
 };
 MobileListEmpty.defaultProps = {
   hideMobile: null,
+  alwaysVisible: false,
   children: null,
   c: '#FFF',
   bc: '#1D1D1D',

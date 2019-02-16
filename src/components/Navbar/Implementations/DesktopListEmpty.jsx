@@ -22,29 +22,28 @@ const ShowMobileMenuButton = styled(Button)`
   }
 `;
 
-const DesktopListEmpty = forwardRef(
-  ({
-    showMobile, isAtTopRef, mobileBreakpoint, children, c, bc, hc, className,
-  }, ref) => (
-    <React.Fragment>
-      <div ref={isAtTopRef} />
-      <DesktopListContainer bc={bc} c={c} className={className} ref={ref}>
-        {children}
-        <ShowMobileMenuButton
-          bg="transparent"
-          onClick={showMobile}
-          mobileBreakpoint={mobileBreakpoint}
-          aria-label="open mobile menu"
-        >
-          <FaBars width="30px" size="1.5x" c={c} hc={hc} />
-        </ShowMobileMenuButton>
-      </DesktopListContainer>
-    </React.Fragment>
-  ),
-);
+const DesktopListEmpty = forwardRef(({ // eslint-disable-next-line no-unused-vars
+  showMobile, isAtTop, isAtTopRef, mobileBreakpoint, children, c, bc, hc, className,
+}, ref) => (
+  <React.Fragment>
+    <div ref={isAtTopRef} />
+    <DesktopListContainer bc={bc} c={c} className={className} ref={ref}>
+      {children}
+      <ShowMobileMenuButton
+        bg="transparent"
+        onClick={showMobile}
+        mobileBreakpoint={mobileBreakpoint}
+        aria-label="open mobile menu"
+      >
+        <FaBars width="30px" size="1.5x" c={c} hc={hc} />
+      </ShowMobileMenuButton>
+    </DesktopListContainer>
+  </React.Fragment>
+));
 
 DesktopListEmpty.propTypes = {
   showMobile: PropTypes.func,
+  isAtTop: PropTypes.bool,
   isAtTopRef: PropTypes.node.isRequired,
   mobileBreakpoint: PropTypes.number,
   children: PropTypes.node,
@@ -55,6 +54,7 @@ DesktopListEmpty.propTypes = {
 };
 DesktopListEmpty.defaultProps = {
   showMobile: null,
+  isAtTop: false,
   mobileBreakpoint: 980,
   children: null,
   c: '#FFF',

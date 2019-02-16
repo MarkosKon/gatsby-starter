@@ -1,4 +1,4 @@
-/* eslint-disable import/prefer-default-export, react/jsx-filename-extension, react/prop-types */
+/* eslint-disable react/jsx-filename-extension, react/prop-types */
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 

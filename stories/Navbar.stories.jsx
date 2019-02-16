@@ -5,8 +5,14 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { useSpring, animated, useTransition } from 'react-spring';
 
-import { Box } from '../src/components/Primitives';
-import { Navbar, DesktopList, MobileList } from '../src/components/Navbar';
+import { Box, Heading, Centered } from '../src/components/Primitives';
+import {
+  Navbar,
+  DesktopList,
+  DesktopListEmpty,
+  MobileList,
+  MobileListEmpty,
+} from '../src/components/Navbar';
 import DYI from '../src/components/DYINavbar';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
@@ -21,14 +27,20 @@ const NavbarDecorator = storyFn => (
 );
 
 const AnimatedDesktopList = animated(DesktopList);
+const AnimatedDesktopListEmpty = animated(DesktopListEmpty);
 const AnimatedMobileList = animated(MobileList);
+const AnimatedMobileListEmpty = animated(MobileListEmpty);
 
-const FixedWidth = styled(AnimatedMobileList)`
+// 1.
+// const FixedWidth = styled(AnimatedMobileList)`
+//   max-width: 320px;
+// `;
+
+// 2.
+const FixedWidth = styled(MobileList)`
   max-width: 320px;
 `;
-// console.log(FixedWidth);
-
-// const AnimatedFixedWidth = animated(FixedWidth);
+const AnimatedFixedWidth = animated(FixedWidth);
 
 storiesOf('Navbar', module)
   .addDecorator(withInfo)
@@ -96,6 +108,27 @@ storiesOf('Navbar', module)
       </Navbar>
     </Box>
   ))
+  .add('animate DesktopListEmpty', () => (
+    <Box height="200vh">
+      <Navbar
+        topEffect
+        desktopList={({ isAtTop, ...props }) => {
+          const spring = useSpring({ height: isAtTop ? 60 : 100 });
+          return (
+            <AnimatedDesktopListEmpty style={spring} {...props}>
+              <Centered>
+                <Heading variant="h2">My Content</Heading>
+              </Centered>
+            </AnimatedDesktopListEmpty>
+          );
+        }}
+      >
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </Navbar>
+    </Box>
+  ))
   .add('fade-in MobileList', () => (
     <Box height="200vh">
       <Navbar
@@ -111,6 +144,7 @@ storiesOf('Navbar', module)
               {...rest}
               key={key}
               style={props}
+              alwaysVisible
               mobileMenuVisible={mobileMenuVisible}
             />
             ),
@@ -138,6 +172,7 @@ storiesOf('Navbar', module)
               {...rest}
               key={key}
               style={props}
+              alwaysVisible
               mobileMenuVisible={mobileMenuVisible}
             />
             ),
@@ -150,21 +185,23 @@ storiesOf('Navbar', module)
       </Navbar>
     </Box>
   ))
-  .add('slide-right fixed width MobileList', () => (
+  .add('slide-left fixed width MobileList', () => (
     <Box height="200vh">
       <Navbar
         mobileList={({ mobileMenuVisible, ...rest }) => {
           const transitions = useTransition(mobileMenuVisible, null, {
-            from: { transform: 'translateX(-100vw)', opacity: 0.5 },
-            enter: { transform: 'translateX(calc(100vw - 320px))', opacity: 1 },
-            leave: { transform: 'translateX(-100vw)', opacity: 0.5 },
+            from: { transform: 'translateX(-320px)' },
+            enter: { transform: 'translateX(0)' },
+            // enter: { transform: 'translateX(calc(100vw - 320vw))', opacity: 1 },
+            leave: { transform: 'translateX(-320px)' },
           });
           return transitions.map(
             ({ item, key, props }) => item && (
-            <FixedWidth
+            <AnimatedFixedWidth
               {...rest}
               key={key}
               style={props}
+              alwaysVisible
               mobileMenuVisible={mobileMenuVisible}
             />
             ),
@@ -177,7 +214,41 @@ storiesOf('Navbar', module)
       </Navbar>
     </Box>
   ))
-  .add('DYI', () => (
+  .add('slide-right MobileListEmpty', () => (
+    <Box height="200vh">
+      <Navbar
+        mobileList={({ mobileMenuVisible, ...rest }) => {
+          const transitions = useTransition(mobileMenuVisible, null, {
+            from: { transform: 'translateX(100vw)', opacity: 0.5 },
+            enter: { transform: 'translateX(0)', opacity: 1 },
+            leave: { transform: 'translateX(100vw)', opacity: 0.5 },
+          });
+          return transitions.map(
+            ({ item, key, props }) => item && (
+            <AnimatedMobileListEmpty
+              {...rest}
+              key={key}
+              style={props}
+              alwaysVisible
+              mobileMenuVisible={mobileMenuVisible}
+            >
+              <Centered>
+                <Heading as="h1" variant="h1">
+                      My Content
+                </Heading>
+              </Centered>
+            </AnimatedMobileListEmpty>
+            ),
+          );
+        }}
+      >
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </Navbar>
+    </Box>
+  ))
+  .add('DYI Navbar with useTopEffect Hook, DesktopListEmpty and MobileList ', () => (
     <Box height="200vh">
       <DYI>
         <a href="/">Home</a>

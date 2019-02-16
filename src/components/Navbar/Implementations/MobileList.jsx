@@ -41,9 +41,10 @@ const CloseButton = styled(Button)`
   right: 35px;
   cursor: pointer;
 `;
-const MobileList = forwardRef(({ // eslint-disable-next-line no-unused-vars
-  children, mobileMenuVisible, hideMobile, c, bc, hc, className,
-}, ref) => (
+const MobileList = forwardRef(
+  ({
+    children, mobileMenuVisible, alwaysVisible, hideMobile, c, bc, hc, className,
+  }, ref) => (alwaysVisible || mobileMenuVisible) && (
   <MobileListContainer bc={bc} c={c} className={className} ref={ref}>
     <MobileLinks c={c} hc={hc}>
       {children}
@@ -52,12 +53,14 @@ const MobileList = forwardRef(({ // eslint-disable-next-line no-unused-vars
       <FaTimes size="2x" c={c} hc={hc} />
     </CloseButton>
   </MobileListContainer>
-));
+  ),
+);
 
 MobileList.propTypes = {
   children: PropTypes.PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
     .isRequired,
   mobileMenuVisible: PropTypes.bool.isRequired,
+  alwaysVisible: PropTypes.bool,
   hideMobile: PropTypes.func,
   c: PropTypes.string,
   bc: PropTypes.string,
@@ -66,6 +69,7 @@ MobileList.propTypes = {
 };
 MobileList.defaultProps = {
   hideMobile: null,
+  alwaysVisible: false,
   c: '#FFF',
   bc: '#1D1D1D',
   hc: 'orangered',

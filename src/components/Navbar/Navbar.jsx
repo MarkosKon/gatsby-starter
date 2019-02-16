@@ -1,34 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { useTopEffect } from './hooks/useTopEffect';
 import DesktopList from './Implementations/DesktopList';
 import MobileList from './Implementations/MobileList';
-
-export const useTopEffect = (topEffect) => {
-  const [isAtTop, setIsAtTop] = useState(false);
-  const isAtTopRef = useRef(null);
-  const observer = useRef();
-
-  useEffect(() => {
-    const windowGlobal = typeof window !== 'undefined' && window;
-    if (topEffect && windowGlobal) {
-      const handleScroll = (entries) => {
-        if (entries[0].isIntersecting) setIsAtTop(false);
-        else setIsAtTop(true);
-      };
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 1,
-      };
-      observer.current = new IntersectionObserver(handleScroll, options);
-      observer.current.observe(isAtTopRef.current);
-    }
-    return () => observer.current && observer.current.disconnect();
-  }, []);
-
-  return [isAtTop, isAtTopRef];
-};
 
 const Navbar = ({
   desktopList, mobileList, brand, topEffect, children, c, bc, hc,
@@ -48,15 +23,14 @@ const Navbar = ({
         bc,
         hc,
       })}
-      {mobileList
-        && mobileList({
-          hideMobile: () => changeMobileMenuVisibility(false),
-          children,
-          mobileMenuVisible,
-          c,
-          bc,
-          hc,
-        })}
+      {mobileList({
+        hideMobile: () => changeMobileMenuVisibility(false),
+        children,
+        mobileMenuVisible,
+        c,
+        bc,
+        hc,
+      })}
     </>
   );
 };

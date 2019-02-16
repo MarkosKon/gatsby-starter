@@ -1,6 +1,5 @@
 import { useStaticQuery, graphql } from 'gatsby';
 
-// eslint-disable-next-line import/prefer-default-export
 export const useSiteMetadata = () => {
   const data = useStaticQuery(graphql`
     query siteMetadataQuery {
