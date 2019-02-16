@@ -15,8 +15,8 @@ const DesktopListContainer = styled.div`
 const ShowMobileMenuButton = styled(Button)`
   display: inline-block;
   position: absolute;
-  right: 0;
-  top: calc(50% - 30px);
+  right: 36px;
+  top: calc(50% - 18px);
   @media screen and (min-width: ${({ mobileBreakpoint }) => `${mobileBreakpoint}px`}) {
     display: none;
   }
@@ -35,7 +35,7 @@ const DesktopListEmpty = forwardRef(({ // eslint-disable-next-line no-unused-var
         mobileBreakpoint={mobileBreakpoint}
         aria-label="open mobile menu"
       >
-        <FaBars width="30px" size="1.5x" c={c} hc={hc} />
+        <FaBars size="1x" c={c} hc={hc} />
       </ShowMobileMenuButton>
     </DesktopListContainer>
   </React.Fragment>
