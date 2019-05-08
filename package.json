@@ -12,6 +12,10 @@
     "lint:fix": "eslint --ext js,jsx --fix src",
     "format": "prettier-eslint --write \"src/**/*.{js,jsx}\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+    "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open",
+    "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -70,16 +74,22 @@
     "@storybook/addon-links": "^5.0.11",
     "@storybook/addons": "^5.0.11",
     "@storybook/react": "^5.0.11",
+    "axe-core": "^3.2.2",
     "babel-loader": "^8.0.5",
+    "cypress": "^3.2.0",
+    "cypress-axe": "^0.4.1",
+    "cypress-testing-library": "^3.0.1",
     "eslint": "^5.12.1",
     "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-cypress": "^2.2.1",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsx-a11y": "^6.2.0",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^2.2.0",
     "lint-staged": "^8.1.1",
     "prettier-eslint": "^8.8.2",
-    "prettier-eslint-cli": "^4.7.1"
+    "prettier-eslint-cli": "^4.7.1",
+    "start-server-and-test": "^1.9.0"
   },
   "keywords": [
     "gatsby"

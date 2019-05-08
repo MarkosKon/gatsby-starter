@@ -50,7 +50,7 @@ const ShowMobileMenuButton = styled(Button)`
 const DesktopList = forwardRef(({ // eslint-disable-next-line no-unused-vars
   showMobile, children, brand, isAtTop, isAtTopRef, mobileBreakpoint, c, bc, hc, className,
 }, ref) => (
-  <React.Fragment>
+  <nav>
     <div ref={isAtTopRef} />
     <DesktopListContainer bc={bc} c={c} className={className} ref={ref}>
       {brand}
@@ -68,7 +68,7 @@ const DesktopList = forwardRef(({ // eslint-disable-next-line no-unused-vars
         </ShowMobileMenuButton>
       </RightPart>
     </DesktopListContainer>
-  </React.Fragment>
+  </nav>
 ));
 DesktopList.propTypes = {
   children: PropTypes.PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
