@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { Text, Centered } from '../src/components/Primitives';
+import { TextNormal, TextLead, TextWide } from '../src/components/Variants';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
 
@@ -19,22 +20,29 @@ const TextDecorator = storyFn => (
 storiesOf('Text', module)
   .addDecorator(withInfo)
   .addDecorator(TextDecorator)
-  .add('normal', () => (
-    <Text variant="normal">
+  .add('default', () => (
+    <Text>
       Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium aliquam, ad reiciendis
       officiis reprehenderit asperiores culpa voluptatum facere laboriosam vitae! Exercitationem
       eius necessitatibus officia.
     </Text>
   ))
-  .add('lead', () => (
-    <Text variant="lead">
+  .add('TextNormal', () => (
+    <TextNormal>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium aliquam, ad reiciendis
+      officiis reprehenderit asperiores culpa voluptatum facere laboriosam vitae! Exercitationem
+      eius necessitatibus officia.
+    </TextNormal>
+  ))
+  .add('TextLead', () => (
+    <TextLead>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur sed tempore labore quae
       dolores. Excepturi aliquam ratione laborum pariatur! Voluptatum!
-    </Text>
+    </TextLead>
   ))
-  .add('wide', () => (
-    <Text variant="wide">
+  .add('TextWide', () => (
+    <TextWide>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur sed tempore labore quae
       dolores.
-    </Text>
+    </TextWide>
   ));

@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import { Heading, Centered } from '../src/components/Primitives';
+import { Heading1, Heading2, Heading3 } from '../src/components/Variants';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
 
@@ -19,14 +20,11 @@ const HeadingDecorator = storyFn => (
 storiesOf('Heading', module)
   .addDecorator(withInfo)
   .addDecorator(HeadingDecorator)
-  .add('h1', () => (
-    <Heading as="h1" variant="h1">
-      Heading 1
+  .add('Heading', () => (
+    <Heading as="h4" color="red" fontSize={5}>
+      Heading
     </Heading>
   ))
-  .add('h2', () => <Heading variant="h2">Heading 2</Heading>)
-  .add('h3', () => (
-    <Heading as="h3" variant="h3">
-      Heading 2
-    </Heading>
-  ));
+  .add('Heading1', () => <Heading1>Heading 1</Heading1>)
+  .add('Heading2', () => <Heading2>Heading 2</Heading2>)
+  .add('Heading3', () => <Heading3>Heading 3</Heading3>);

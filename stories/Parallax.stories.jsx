@@ -8,6 +8,7 @@ import { Card } from 'rebass';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
 import { Box, Centered, Heading } from '../src/components/Primitives';
+import { Heading1 } from '../src/components/Variants';
 import Parallax from '../src/components/Parallax';
 
 const ParallaxDecorator = storyFn => (
@@ -25,16 +26,12 @@ storiesOf('Parallax', module)
     <Box>
       <Parallax speed={-10}>
         <Centered minHeight="70vh">
-          <Heading as="h1" variant="h1">
-            Hello
-          </Heading>
+          <Heading1>Hello</Heading1>
         </Centered>
       </Parallax>
       <Parallax speed={10}>
         <Centered minHeight="70vh">
-          <Heading as="h1" variant="h1">
-            World!
-          </Heading>
+          <Heading1>World!</Heading1>
         </Centered>
       </Parallax>
 

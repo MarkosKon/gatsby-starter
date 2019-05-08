@@ -5,7 +5,8 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { useSpring, animated, useTransition } from 'react-spring';
 
-import { Box, Heading, Centered } from '../src/components/Primitives';
+import { Box, Centered } from '../src/components/Primitives';
+import { Heading1, Heading2 } from '../src/components/Variants';
 import {
   Navbar,
   DesktopList,
@@ -117,7 +118,7 @@ storiesOf('Navbar', module)
           return (
             <AnimatedDesktopListEmpty style={spring} {...props}>
               <Centered>
-                <Heading variant="h2">My Content</Heading>
+                <Heading2>My Content</Heading2>
               </Centered>
             </AnimatedDesktopListEmpty>
           );
@@ -233,9 +234,7 @@ storiesOf('Navbar', module)
               mobileMenuVisible={mobileMenuVisible}
             >
               <Centered>
-                <Heading as="h1" variant="h1">
-                      My Content
-                </Heading>
+                <Heading1>My Content</Heading1>
               </Centered>
             </AnimatedMobileListEmpty>
             ),

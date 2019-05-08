@@ -5,9 +5,10 @@ import { withInfo } from '@storybook/addon-info';
 import { ThemeProvider } from 'styled-components';
 import Slider from 'react-slick';
 
+import { Box, Centered, Flex } from '../src/components/Primitives';
 import {
-  Box, Centered, Heading, Text, Flex,
-} from '../src/components/Primitives';
+  Heading1, Heading2, TextWide, TextNormal,
+} from '../src/components/Variants';
 // import Slider from '../src/components/Slider';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
@@ -50,29 +51,29 @@ storiesOf('Slider', module)
     <Slider {...sliderSettings}>
       <Box>
         <Centered height="90vh" bg="pink">
-          <Heading variant="h2">Slide #1</Heading>
-          <Text variant="wide">Lorem, ipsum dolor sit amet consectetur. </Text>
-          <Text variant="normal">
+          <Heading2>Slide #1</Heading2>
+          <TextWide>Lorem, ipsum dolor sit amet consectetur. </TextWide>
+          <TextNormal>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, culpa?
-          </Text>
+          </TextNormal>
         </Centered>
       </Box>
       <Box>
         <Centered height="90vh" bg="pink">
-          <Heading variant="h2">Slide #2</Heading>
-          <Text variant="wide">Lorem, ipsum dolor sit amet consectetur. </Text>
-          <Text variant="normal">
+          <Heading2>Slide #2</Heading2>
+          <TextWide>Lorem, ipsum dolor sit amet consectetur. </TextWide>
+          <TextNormal>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, culpa?
-          </Text>
+          </TextNormal>
         </Centered>
       </Box>
       <Box>
         <Centered height="90vh" bg="pink">
-          <Heading variant="h2">Slide #3</Heading>
-          <Text variant="wide">Lorem, ipsum dolor sit amet consectetur. </Text>
-          <Text variant="normal">
+          <Heading2>Slide #3</Heading2>
+          <TextWide>Lorem, ipsum dolor sit amet consectetur. </TextWide>
+          <TextNormal>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, culpa?
-          </Text>
+          </TextNormal>
         </Centered>
       </Box>
     </Slider>
@@ -81,42 +82,31 @@ storiesOf('Slider', module)
   .add('fix the flex problem', () => (
     <Flex flexWrap="wrap">
       <Box p={4} bg="#7d4d7d" width={[1, 1, 1 / 2]}>
-        <Heading as="h1" variant="h1" mb={4}>
-          Hey look!
-        </Heading>
-        <Text variant="wide">
+        <Heading1 mb={4}>Hey look!</Heading1>
+        <TextWide>
           There&apos;s a
           <b> slider </b>
           on your left!
-        </Text>
+        </TextWide>
       </Box>
       <Box width={[1, 1, 1 / 2]}>
         <Slider {...sliderSettings} dots={false}>
           <Box>
             <Centered bg="pink" p={[3, 5]}>
-              <Heading variant="h2">Slide #1</Heading>
-              <Text variant="wide">Lorem, ipsum dolor sit amet consectetur. </Text>
-              <Text variant="normal">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, culpa?
-              </Text>
+              <Heading2 mb={3}>Slide #1</Heading2>
+              <TextWide>Lorem, ipsum dolor sit amet consectetur. </TextWide>
             </Centered>
           </Box>
           <Box>
             <Centered bg="pink" p={[3, 5]}>
-              <Heading variant="h2">Slide #2</Heading>
-              <Text variant="wide">Lorem, ipsum dolor sit amet consectetur. </Text>
-              <Text variant="normal">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, culpa?
-              </Text>
+              <Heading2 mb={3}>Slide #2</Heading2>
+              <TextWide>Lorem, ipsum dolor sit amet consectetur. </TextWide>
             </Centered>
           </Box>
           <Box>
             <Centered bg="pink" p={[3, 5]}>
-              <Heading variant="h2">Slide #3</Heading>
-              <Text variant="wide">Lorem, ipsum dolor sit amet consectetur. </Text>
-              <Text variant="normal">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt, culpa?
-              </Text>
+              <Heading2 mb={3}>Slide #3</Heading2>
+              <TextWide>Lorem, ipsum dolor sit amet consectetur. </TextWide>
             </Centered>
           </Box>
         </Slider>

@@ -5,7 +5,8 @@
 // import { withInfo } from '@storybook/addon-info';
 // import { Spring } from 'react-spring';
 
-// import { Box, Centered, Heading } from '../src/components/Primitives';
+// import { Box, Centered } from '../src/components/Primitives';
+// import { Heading1 } from '../src/components/Variants';
 // import theme from '../src/layouts/theme';
 // import GlobalStyle from '../src/layouts/GlobalStyle';
 // import VisibilitySensor from '../src/components/VisibilitySensor';
@@ -29,9 +30,9 @@
 //             {({ isVisible }) => (
 //               <Spring delay={300} to={{ opacity: isVisible ? 1 : 0 }}>
 //                 {props => (
-//                   <Heading as="h1" variant="h1" style={props}>
+//                   <Heading1 style={props}>
 //                     Hello
-//                   </Heading>
+//                   </Heading1>
 //                 )}
 //               </Spring>
 //             )}
@@ -44,9 +45,9 @@
 //             {({ isVisible }) => (
 //               <Spring delay={300} to={{ opacity: isVisible ? 1 : 0 }}>
 //                 {props => (
-//                   <Heading as="h1" variant="h1" style={props}>
+//                   <Heading1 style={props}>
 //                     World
-//                   </Heading>
+//                   </Heading1>
 //                 )}
 //               </Spring>
 //             )}
@@ -59,9 +60,9 @@
 //             {({ isVisible }) => (
 //               <Spring delay={300} to={{ opacity: isVisible ? 1 : 0 }}>
 //                 {props => (
-//                   <Heading as="h1" variant="h1" style={props}>
+//                   <Heading1 style={props}>
 //                     !!!
-//                   </Heading>
+//                   </Heading1>
 //                 )}
 //               </Spring>
 //             )}

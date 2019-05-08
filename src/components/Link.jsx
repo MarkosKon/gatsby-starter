@@ -2,15 +2,10 @@ import PropTypes from 'prop-types';
 import { Link as GatsbyLink } from 'gatsby';
 import styled from 'styled-components';
 import {
-  color, fontSize, fontFamily, fontWeight, lineHeight, variant, space,
+  color, fontSize, fontFamily, fontWeight, lineHeight, space,
 } from 'styled-system';
 
-const linkStyle = variant({
-  key: 'links',
-});
-
 const Link = styled(GatsbyLink)`
-  ${linkStyle}
   ${color}
   ${space}
   ${fontSize}

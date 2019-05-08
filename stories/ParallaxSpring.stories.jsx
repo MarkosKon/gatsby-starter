@@ -7,7 +7,8 @@
 
 // import theme from '../src/layouts/theme';
 // import GlobalStyle from '../src/layouts/GlobalStyle';
-// import { Box, Centered, Heading } from '../src/components/Primitives';
+// import { Box, Centered } from '../src/components/Primitives';
+// import { Heading1 } from '../src/components/Variants';
 
 // const ParallaxDecorator = storyFn => (
 //   <ThemeProvider theme={theme}>
@@ -25,24 +26,24 @@
 //       <Parallax pages={3}>
 //         <ParallaxLayer offset={0} speed={0}>
 //           <Centered bg="pink" minHeight="70vh">
-//             <Heading as="h1" variant="h1">
+//             <Heading1>
 //               Hello
-//             </Heading>
+//             </Heading1>
 //           </Centered>
 //         </ParallaxLayer>
 
 //         <ParallaxLayer offset={1} speed={1}>
 //           <Centered bg="white" minHeight="70vh">
-//             <Heading as="h1" variant="h1">
+//             <Heading1>
 //               World
-//             </Heading>
+//             </Heading1>
 //           </Centered>
 //         </ParallaxLayer>
 //         <ParallaxLayer offset={2} speed={1}>
 //           <Centered bg="beige" minHeight="70vh">
-//             <Heading as="h1" variant="h1">
+//             <Heading1>
 //               !!!
-//             </Heading>
+//             </Heading1>
 //           </Centered>
 //         </ParallaxLayer>
 //       </Parallax>

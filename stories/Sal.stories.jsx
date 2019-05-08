@@ -5,7 +5,8 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 
 import sal from 'sal.js';
-import { Box, Centered, Heading } from '../src/components/Primitives';
+import { Box, Centered } from '../src/components/Primitives';
+import { Heading1 } from '../src/components/Variants';
 import Sal from '../src/components/Sal';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
@@ -39,27 +40,21 @@ storiesOf('Sal', module)
       <Box height="100vh" bg="pink">
         <Centered>
           <Sal delay="500">
-            <Heading as="h1" variant="h1">
-              Hello
-            </Heading>
+            <Heading1>Hello</Heading1>
           </Sal>
         </Centered>
       </Box>
       <Box height="100vh" bg="white" color="orangered">
         <Centered>
           <Sal duration="2000">
-            <Heading as="h1" variant="h1">
-              World
-            </Heading>
+            <Heading1>World</Heading1>
           </Sal>
         </Centered>
       </Box>
       <Box height="100vh" bg="orangered" color="white">
         <Centered>
           <Sal delay="300" duration="300" animation="flip-right">
-            <Heading as="h1" variant="h1">
-              !!!
-            </Heading>
+            <Heading1>!!!</Heading1>
           </Sal>
         </Centered>
       </Box>

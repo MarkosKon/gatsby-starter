@@ -8,7 +8,8 @@ import { ThemeProvider } from 'styled-components';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
 import BgImage from '../src/components/BgImage';
-import { Heading, Centered, Box } from '../src/components/Primitives';
+import { Centered, Box } from '../src/components/Primitives';
+import { Heading1 } from '../src/components/Variants';
 import { data } from './mock-data/slider-2';
 
 const BgImageDecorator = storyFn => (
@@ -30,9 +31,7 @@ storiesOf('BgImage', module)
       height="500px"
     >
       <Centered color="white">
-        <Heading as="h1" variant="h1">
-          BACKGROUND IMAGE
-        </Heading>
+        <Heading1>BACKGROUND IMAGE</Heading1>
       </Centered>
     </BgImage>
   ));
