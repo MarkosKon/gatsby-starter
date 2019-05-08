@@ -26,6 +26,8 @@ const Layout = ({ children }) => {
 )}
         desktopList={props => <DesktopList {...props} />}
         mobileList={({ mobileMenuVisible, ...rest }) => {
+          // TODO fix
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           const transitions = useTransition(mobileMenuVisible, null, {
             from: { opacity: 0 },
             enter: { opacity: 1 },

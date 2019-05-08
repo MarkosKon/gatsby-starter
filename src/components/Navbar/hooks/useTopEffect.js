@@ -21,7 +21,7 @@ export const useTopEffect = (topEffect) => {
       observer.current.observe(isAtTopRef.current);
     }
     return () => observer.current && observer.current.disconnect();
-  }, []);
+  }, [topEffect]);
 
   return [isAtTop, isAtTopRef];
 };

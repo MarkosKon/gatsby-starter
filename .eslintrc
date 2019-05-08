@@ -4,7 +4,10 @@
     "browser": true,
     "node": true
   },
+  "plugins": ["react-hooks"],
   "rules": {
-    "import/prefer-default-export": 0
+    "import/prefer-default-export": 0,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
