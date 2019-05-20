@@ -1,20 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { useTopEffect } from './hooks/useTopEffect';
 import DesktopList from './Implementations/DesktopList';
 import MobileList from './Implementations/MobileList';
+import { scrollLock, scrollUnlock } from './utils';
 
 const Navbar = ({
-  desktopList, mobileList, brand, topEffect, children, c, bc, hc,
+  desktopList,
+  mobileList,
+  brand,
+  topEffect,
+  children,
+  applicationNodeId,
+  c,
+  bc,
+  hc,
 }) => {
   const [mobileMenuVisible, changeMobileMenuVisibility] = useState(false);
   const [isAtTop, isAtTopRef] = useTopEffect(topEffect);
+  const openButtonRef = useRef();
 
   return (
     <>
       {desktopList({
-        showMobile: () => changeMobileMenuVisibility(true),
+        showMobile: () => {
+          changeMobileMenuVisibility(true);
+          scrollLock();
+          document.getElementById(applicationNodeId).setAttribute('aria-hidden', true);
+        },
+        openButtonRef,
         children,
         brand,
         isAtTop,
@@ -24,7 +39,12 @@ const Navbar = ({
         hc,
       })}
       {mobileList({
-        hideMobile: () => changeMobileMenuVisibility(false),
+        hideMobile: () => {
+          changeMobileMenuVisibility(false);
+          scrollUnlock();
+          document.getElementById(applicationNodeId).setAttribute('aria-hidden', false);
+          openButtonRef.current.focus();
+        },
         children,
         mobileMenuVisible,
         c,
@@ -40,6 +60,7 @@ Navbar.propTypes = {
   brand: PropTypes.element,
   topEffect: PropTypes.bool,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]),
+  applicationNodeId: PropTypes.string.isRequired,
   c: PropTypes.string,
   bc: PropTypes.string,
   hc: PropTypes.string,

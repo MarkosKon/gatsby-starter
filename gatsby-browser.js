@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './src/layouts/theme';
 import GlobalStyle from './src/layouts/GlobalStyle';
+import './src/components/Navbar/Navbar.css';
 import 'normalize.css';
 import 'typeface-playfair-display';
 import 'typeface-open-sans';

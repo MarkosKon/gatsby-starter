@@ -1,11 +1,13 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import FocusTrap from 'focus-trap-react';
 
 import { Button } from '../../Primitives';
 import { FaTimes } from '../../Icons';
 
-const MobileListContainer = styled.div`
+const Container = styled.div`
   background-color: ${({ bc }) => bc};
   color: ${({ c }) => c};
   position: fixed;
@@ -19,18 +21,52 @@ const CloseButton = styled(Button)`
   position: absolute;
   top: 20px;
   right: 20px;
+  transition: color 0.2s ease-in;
+  :hover {
+    color: ${({ hc }) => hc};
+  }
 `;
 const MobileListEmpty = forwardRef(
   ({
     hideMobile, mobileMenuVisible, alwaysVisible, children, c, bc, hc, className,
-  }, ref) => (alwaysVisible || mobileMenuVisible) && (
-  <MobileListContainer c={c} bc={bc} className={className} ref={ref}>
-    <CloseButton bg="transparent" onClick={hideMobile} aria-label="close mobile menu">
-      <FaTimes size="2x" width="30px" c={c} hc={hc} />
-    </CloseButton>
-    {children}
-  </MobileListContainer>
-  ),
+  }, ref) => {
+    const closeButtonRef = useRef();
+    useEffect(() => {
+      if (mobileMenuVisible) {
+        closeButtonRef.current.focus();
+      }
+    }, [mobileMenuVisible]);
+    return (
+      (alwaysVisible || mobileMenuVisible)
+      && createPortal(
+        <FocusTrap>
+          <Container
+            c={c}
+            bc={bc}
+            className={className}
+            ref={ref}
+            role="dialog"
+            aria-label="mobile menu"
+            tabIndex="-1"
+            onKeyDown={({ keyCode }) => keyCode === 27 && hideMobile()}
+          >
+            <CloseButton
+              ref={closeButtonRef}
+              bg="transparent"
+              onClick={hideMobile}
+              aria-label="close mobile menu"
+              color={c}
+              hc={hc}
+            >
+              <FaTimes size="2x" width="30px" />
+            </CloseButton>
+            {children}
+          </Container>
+        </FocusTrap>,
+        document.body,
+      )
+    );
+  },
 );
 
 MobileListEmpty.propTypes = {

@@ -13,38 +13,41 @@ const DesktopList = styled(BaseDL)`
 `;
 const AnimatedMobileList = animated(MobileList);
 
+// eslint-disable-next-line react/prop-types
+const Brand = ({ title }) => (
+  <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
+    <h1>{title}</h1>
+  </Link>
+);
+const MobileMenu = ({ mobileMenuVisible, ...rest }) => {
+  const transitions = useTransition(mobileMenuVisible, null, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+  });
+  return transitions.map(
+    ({ item, key, props }) => item && (
+    <AnimatedMobileList
+      {...rest}
+      key={key}
+      style={props}
+      alwaysVisible
+      mobileMenuVisible={mobileMenuVisible}
+    />
+    ),
+  );
+};
+
 const Layout = ({ children }) => {
   const { title } = useSiteMetadata();
   return (
     <>
       <Navbar
+        applicationNodeId="___gatsby"
         bc="rebeccapurple"
-        brand={(
-          <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
-            <h1>{title}</h1>
-          </Link>
-)}
+        brand={<Brand title={title} />}
         desktopList={props => <DesktopList {...props} />}
-        mobileList={({ mobileMenuVisible, ...rest }) => {
-          // TODO fix
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const transitions = useTransition(mobileMenuVisible, null, {
-            from: { opacity: 0 },
-            enter: { opacity: 1 },
-            leave: { opacity: 0 },
-          });
-          return transitions.map(
-            ({ item, key, props }) => item && (
-            <AnimatedMobileList
-              {...rest}
-              key={key}
-              style={props}
-              alwaysVisible
-              mobileMenuVisible={mobileMenuVisible}
-            />
-            ),
-          );
-        }}
+        mobileList={MobileMenu}
       >
         <Link to="/">Home</Link>
         <Link to="/page-2">Page 2</Link>

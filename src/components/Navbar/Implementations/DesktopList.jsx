@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
+import React, { Fragment, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Button } from '../../Primitives';
 import { FaBars } from '../../Icons';
 
-const DesktopListContainer = styled.div`
+const Container = styled.nav`
   position: sticky;
   top: 0;
   background-color: ${({ bc }) => bc};
@@ -19,7 +19,7 @@ const DesktopListContainer = styled.div`
     padding: 0 0 0 20px;
   }
 `;
-const RightPart = styled.div`
+const Right = styled.div`
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -32,6 +32,7 @@ const DesktopLinks = styled.div`
     color: inherit;
     text-decoration: none;
     margin-left: 1.5rem;
+    transition: color 0.2s ease-in;
   }
   a:hover {
     color: ${({ hc }) => hc};
@@ -43,38 +44,64 @@ const DesktopLinks = styled.div`
 const ShowMobileMenuButton = styled(Button)`
   display: inline-block;
   cursor: pointer;
+  transition: color 0.2s ease-in;
+  :hover {
+    color: ${({ hc }) => hc};
+  }
   @media screen and (min-width: ${({ mobileBreakpoint }) => `${mobileBreakpoint}px`}) {
     display: none;
   }
 `;
-const DesktopList = forwardRef(({ // eslint-disable-next-line no-unused-vars
-  showMobile, children, brand, isAtTop, isAtTopRef, mobileBreakpoint, c, bc, hc, className,
-}, ref) => (
-  <React.Fragment>
-    <div ref={isAtTopRef} />
-    <DesktopListContainer bc={bc} c={c} className={className} ref={ref}>
-      {brand}
-      <RightPart>
-        <DesktopLinks c={c} hc={hc} mobileBreakpoint={mobileBreakpoint}>
-          {children}
-        </DesktopLinks>
-        <ShowMobileMenuButton
-          bg="transparent"
-          onClick={showMobile}
-          mobileBreakpoint={mobileBreakpoint}
-          aria-label="open mobile menu"
-        >
-          <FaBars size="1x" c={c} hc={hc} />
-        </ShowMobileMenuButton>
-      </RightPart>
-    </DesktopListContainer>
-  </React.Fragment>
-));
+const DesktopList = forwardRef(
+  (
+    {
+      showMobile,
+      openButtonRef,
+      children,
+      brand,
+      // eslint-disable-next-line no-unused-vars
+      isAtTop,
+      isAtTopRef,
+      mobileBreakpoint,
+      c,
+      bc,
+      hc,
+      className,
+    },
+    ref,
+  ) => (
+    <Fragment>
+      <div ref={isAtTopRef} aria-hidden="true" />
+      <Container bc={bc} c={c} className={className} ref={ref}>
+        {brand}
+        <Right>
+          <DesktopLinks c={c} hc={hc} mobileBreakpoint={mobileBreakpoint}>
+            {children}
+          </DesktopLinks>
+          <ShowMobileMenuButton
+            ref={openButtonRef}
+            bg="transparent"
+            onClick={showMobile}
+            mobileBreakpoint={mobileBreakpoint}
+            aria-label="open mobile menu"
+            color={c}
+            hc={hc}
+          >
+            <FaBars size="1x" />
+          </ShowMobileMenuButton>
+        </Right>
+      </Container>
+    </Fragment>
+  ),
+);
 DesktopList.propTypes = {
+  showMobile: PropTypes.func,
+  openButtonRef: PropTypes.PropTypes.shape({
+    current: PropTypes.object,
+  }),
   children: PropTypes.PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
     .isRequired,
   brand: PropTypes.element,
-  showMobile: PropTypes.func,
   isAtTop: PropTypes.bool,
   isAtTopRef: PropTypes.shape({
     current: PropTypes.object,
@@ -87,6 +114,7 @@ DesktopList.propTypes = {
 };
 DesktopList.defaultProps = {
   showMobile: null,
+  openButtonRef: { current: { focus: () => {} } },
   brand: null,
   isAtTop: false,
   mobileBreakpoint: 980,

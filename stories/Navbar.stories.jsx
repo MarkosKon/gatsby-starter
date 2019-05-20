@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { useSpring, animated, useTransition } from 'react-spring';
 
-import { Box, Centered } from '../src/components/Primitives';
+import { Box, Centered, Text } from '../src/components/Primitives';
 import { Heading1, Heading2 } from '../src/components/Variants';
 import {
   Navbar,
@@ -14,6 +14,7 @@ import {
   MobileList,
   MobileListEmpty,
 } from '../src/components/Navbar';
+import '../src/components/Navbar/Navbar.css';
 import DYI from '../src/components/DYINavbar';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
@@ -48,7 +49,7 @@ storiesOf('Navbar', module)
   .addDecorator(NavbarDecorator)
   .add('default', () => (
     <Box height="200vh">
-      <Navbar>
+      <Navbar applicationNodeId="root" c="red" hc="blue">
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
@@ -57,7 +58,10 @@ storiesOf('Navbar', module)
   ))
   .add('mobile breakpoint', () => (
     <Box height="200vh">
-      <Navbar desktopList={props => <DesktopList {...props} mobileBreakpoint={3000} />}>
+      <Navbar
+        applicationNodeId="root"
+        desktopList={props => <DesktopList {...props} mobileBreakpoint={3000} />}
+      >
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
@@ -67,6 +71,7 @@ storiesOf('Navbar', module)
   .add('animate DesktopList', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         topEffect
         desktopList={({ isAtTop, ...props }) => {
           const spring = useSpring({ height: isAtTop ? 80 : 100 });
@@ -77,11 +82,15 @@ storiesOf('Navbar', module)
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </Navbar>
+      <Centered height="200px">
+        <Text>Scroll down</Text>
+      </Centered>
     </Box>
   ))
   .add('animate DesktopList #2', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         topEffect
         desktopList={({ isAtTop, ...props }) => {
           const [spring, set] = useSpring(() => ({ height: 100 }));
@@ -107,11 +116,15 @@ storiesOf('Navbar', module)
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </Navbar>
+      <Centered height="200px">
+        <Text>Scroll down</Text>
+      </Centered>
     </Box>
   ))
   .add('animate DesktopListEmpty', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         topEffect
         desktopList={({ isAtTop, ...props }) => {
           const spring = useSpring({ height: isAtTop ? 60 : 100 });
@@ -133,6 +146,7 @@ storiesOf('Navbar', module)
   .add('fade-in MobileList', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         mobileList={({ mobileMenuVisible, ...rest }) => {
           const transitions = useTransition(mobileMenuVisible, null, {
             from: { opacity: 0 },
@@ -161,6 +175,7 @@ storiesOf('Navbar', module)
   .add('slide-down MobileList', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         mobileList={({ mobileMenuVisible, ...rest }) => {
           const transitions = useTransition(mobileMenuVisible, null, {
             from: { transform: 'translateY(-100vh)', opacity: 0.5 },
@@ -189,6 +204,7 @@ storiesOf('Navbar', module)
   .add('slide-left fixed width MobileList', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         mobileList={({ mobileMenuVisible, ...rest }) => {
           const transitions = useTransition(mobileMenuVisible, null, {
             from: { transform: 'translateX(-320px)' },
@@ -218,6 +234,7 @@ storiesOf('Navbar', module)
   .add('slide-right MobileListEmpty', () => (
     <Box height="200vh">
       <Navbar
+        applicationNodeId="root"
         mobileList={({ mobileMenuVisible, ...rest }) => {
           const transitions = useTransition(mobileMenuVisible, null, {
             from: { transform: 'translateX(100vw)', opacity: 0.5 },
@@ -249,7 +266,7 @@ storiesOf('Navbar', module)
   ))
   .add('DYI Navbar with useTopEffect Hook, DesktopListEmpty and MobileList ', () => (
     <Box height="200vh">
-      <DYI>
+      <DYI applicationNodeId="root">
         <a href="/">Home</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>

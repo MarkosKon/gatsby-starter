@@ -1,11 +1,11 @@
-import React, { forwardRef } from 'react';
+import React, { Fragment, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Button } from '../../Primitives';
 import { FaBars } from '../../Icons';
 
-const DesktopListContainer = styled.div`
+const Container = styled.nav`
   position: sticky;
   top: 0;
   background-color: ${({ bc }) => bc};
@@ -17,32 +17,42 @@ const ShowMobileMenuButton = styled(Button)`
   position: absolute;
   right: 36px;
   top: calc(50% - 18px);
+  transition: color 0.2s ease-in;
+  :hover {
+    color: ${({ hc }) => hc};
+  }
   @media screen and (min-width: ${({ mobileBreakpoint }) => `${mobileBreakpoint}px`}) {
     display: none;
   }
 `;
 
 const DesktopListEmpty = forwardRef(({ // eslint-disable-next-line no-unused-vars
-  showMobile, isAtTop, isAtTopRef, mobileBreakpoint, children, c, bc, hc, className,
+  showMobile, openButtonRef, isAtTop, isAtTopRef, mobileBreakpoint, children, c, bc, hc, className,
 }, ref) => (
-  <React.Fragment>
-    <div ref={isAtTopRef} />
-    <DesktopListContainer bc={bc} c={c} className={className} ref={ref}>
+  <Fragment>
+    <div ref={isAtTopRef} aria-hidden="true" />
+    <Container bc={bc} c={c} className={className} ref={ref}>
       {children}
       <ShowMobileMenuButton
+        ref={openButtonRef}
         bg="transparent"
         onClick={showMobile}
         mobileBreakpoint={mobileBreakpoint}
         aria-label="open mobile menu"
+        color={c}
+        hc={hc}
       >
-        <FaBars size="1x" c={c} hc={hc} />
+        <FaBars size="1x" />
       </ShowMobileMenuButton>
-    </DesktopListContainer>
-  </React.Fragment>
+    </Container>
+  </Fragment>
 ));
 
 DesktopListEmpty.propTypes = {
   showMobile: PropTypes.func,
+  openButtonRef: PropTypes.PropTypes.shape({
+    current: PropTypes.object,
+  }),
   isAtTop: PropTypes.bool,
   isAtTopRef: PropTypes.shape({
     current: PropTypes.object,
@@ -56,6 +66,7 @@ DesktopListEmpty.propTypes = {
 };
 DesktopListEmpty.defaultProps = {
   showMobile: null,
+  openButtonRef: { current: { focus: () => {} } },
   isAtTop: false,
   mobileBreakpoint: 980,
   children: null,

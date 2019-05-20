@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSpring, useTransition, animated } from 'react-spring';
 
-import { DesktopListEmpty as DesktopList, MobileList, useTopEffect } from './Navbar';
+import {
+  DesktopListEmpty as DesktopList,
+  MobileList,
+  useTopEffect,
+  scrollLock,
+  scrollUnlock,
+} from './Navbar';
 
 const AnimatedDesktopList = animated(DesktopList);
 const AnimatedMobileList = animated(MobileList);
 
 const Navbar = ({
-  children, c, bc, hc,
+  children, c, bc, hc, applicationNodeId,
 }) => {
   const [mobileMenuVisible, changeMobileMenuVisibility] = useState(false);
   const [isAtTop, isAtTopRef] = useTopEffect(true);
+  const openButtonRef = useRef();
   const desktopSpring = useSpring({ height: isAtTop ? 80 : 100 });
   const mobileTransitions = useTransition(mobileMenuVisible, null, {
     from: { opacity: 0 },
@@ -26,7 +33,12 @@ const Navbar = ({
         bc={bc}
         hc={hc}
         links={children}
-        showMobile={() => changeMobileMenuVisibility(true)}
+        showMobile={() => {
+          changeMobileMenuVisibility(true);
+          scrollLock();
+          document.getElementById(applicationNodeId).setAttribute('aria-hidden', true);
+        }}
+        openButtonRef={openButtonRef}
         isAtTopRef={isAtTopRef}
       >
         {children}
@@ -39,7 +51,12 @@ const Navbar = ({
           c={c}
           bc={bc}
           hc={hc}
-          hideMobile={() => changeMobileMenuVisibility(false)}
+          hideMobile={() => {
+            changeMobileMenuVisibility(false);
+            scrollUnlock();
+            document.getElementById(applicationNodeId).setAttribute('aria-hidden', false);
+            openButtonRef.current.focus();
+          }}
           alwaysVisible
           mobileMenuVisible={mobileMenuVisible}
         >
@@ -56,6 +73,7 @@ Navbar.propTypes = {
   c: PropTypes.string,
   bc: PropTypes.string,
   hc: PropTypes.string,
+  applicationNodeId: PropTypes.string.isRequired,
 };
 Navbar.defaultProps = {
   children: null,
