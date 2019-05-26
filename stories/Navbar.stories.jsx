@@ -5,17 +5,15 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { useSpring, animated, useTransition } from 'react-spring';
 
-import { Box, Centered, Text } from '../src/components/Primitives';
-import { Heading1, Heading2 } from '../src/components/Variants';
 import {
   Navbar,
   DesktopList,
   DesktopListEmpty,
   MobileList,
   MobileListEmpty,
-} from '../src/components/Navbar';
-import '../src/components/Navbar/Navbar.css';
-import DYI from '../src/components/DYINavbar';
+} from 'accessible-navbar';
+import { Box, Centered, Text } from '../src/components/Primitives';
+import { Heading1, Heading2 } from '../src/components/Variants';
 import theme from '../src/layouts/theme';
 import GlobalStyle from '../src/layouts/GlobalStyle';
 
@@ -262,14 +260,5 @@ storiesOf('Navbar', module)
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
       </Navbar>
-    </Box>
-  ))
-  .add('DYI Navbar with useTopEffect Hook, DesktopListEmpty and MobileList ', () => (
-    <Box height="200vh">
-      <DYI applicationNodeId="root">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-      </DYI>
     </Box>
   ));

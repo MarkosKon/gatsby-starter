@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useTransition, animated } from 'react-spring';
 
-import { Navbar, DesktopList as BaseDL, MobileList } from '../components/Navbar';
+import { Navbar, DesktopList as BaseDL, MobileList } from 'accessible-navbar';
 import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { Box } from '../components/Primitives';
+import { Heading2 } from '../components/Variants';
 import Link from '../components/Link';
 
 const DesktopList = styled(BaseDL)`
@@ -15,8 +16,8 @@ const AnimatedMobileList = animated(MobileList);
 
 // eslint-disable-next-line react/prop-types
 const Brand = ({ title }) => (
-  <Link to="/" style={{ color: 'white', textDecoration: 'none' }}>
-    <h1>{title}</h1>
+  <Link to="/" style={{ color: 'white', textDecoration: 'none', margin: 0 }}>
+    <Heading2 fontSize={6}>{title}</Heading2>
   </Link>
 );
 const MobileMenu = ({ mobileMenuVisible, ...rest }) => {
@@ -45,6 +46,7 @@ const Layout = ({ children }) => {
       <Navbar
         applicationNodeId="___gatsby"
         bc="rebeccapurple"
+        hc="darkorange"
         brand={<Brand title={title} />}
         desktopList={props => <DesktopList {...props} />}
         mobileList={MobileMenu}
