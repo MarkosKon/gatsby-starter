@@ -43,7 +43,8 @@ const BgImage = ({
   </Parent>
 );
 BgImage.propTypes = {
-  fluid: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  // eslint-disable-next-line react/forbid-prop-types
+  fluid: PropTypes.object.isRequired,
   title: PropTypes.string.isRequired,
   height: PropTypes.string,
   mobileHeight: PropTypes.string,

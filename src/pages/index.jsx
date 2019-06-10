@@ -25,6 +25,9 @@ const IndexPage = () => (
         <li>
           <Link to="/parallax/">Parallax example with react-spring</Link>
         </li>
+        <li>
+          <Link to="/bg-image/">Background Image examples</Link>
+        </li>
       </ul>
     </Box>
   </Layout>
