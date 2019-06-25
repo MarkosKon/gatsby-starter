@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Don't forget to add the following and initialize
+// Don't forget the imports and to initialize
+// sal, when the application first mounts.
+// Don't do it in this file.
+
 // import sal from 'sal.js';
 // import 'sal.js/dist/sal.css';
 // sal();
